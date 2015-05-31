@@ -1,7 +1,7 @@
 # SVM for MNIST
 svm for [MNIST handwriting digit database](http://yann.lecun.com/exdb/mnist/)
 
-### Program Structure
+### File Structure
 ```
 ├── MNIST                       # The MNIST database
 │   ├── t10k-images.idx3-ubyte  # Training data

@@ -1,7 +1,11 @@
 function images = loadMNISTImages(filename)
-% loadMNISTImages returns a [number of MNIST images]x[28x28] matrix containing
-% raws of MNIST images. 
-% For example, image[i][j] is the jth pixel of the ith image
+% loadMNISTImages
+% input
+%     filename: the name of the MNIST database file
+% output:
+%     image: A vector of pixel image.
+%            image(i) is the ith image
+%            image(i)(j) is the jth pixel of the ith image
 
 fp = fopen(filename, 'rb');
 assert(fp ~= -1, ['Could not open ', filename, '']);

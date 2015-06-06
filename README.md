@@ -1,4 +1,4 @@
-# SVM for MNIST
+﻿# SVM for MNIST
 svm for [MNIST handwriting digit database](http://yann.lecun.com/exdb/mnist/)
 
 ### File Structure
@@ -13,7 +13,7 @@ svm for [MNIST handwriting digit database](http://yann.lecun.com/exdb/mnist/)
 ├── loadMNISTImages.m           # Load image files
 ├── loadMNISTLabels.m           # Load label files
 ├── svm.m                       # Main program
-└── svmTrain.m                  # To be finished by Vincent
+└── svmTrain.m                  # name changed...
 ```
 
 ### To Vincent

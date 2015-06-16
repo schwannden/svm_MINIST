@@ -48,5 +48,6 @@ for i = 1:N
     correct = sum(alpha .* trainingLabel .* k) > 0;
     correctCount = correctCount + correct;
 end
+sprintf ('prediction accuracy is: %d', 100* correctCount / N)
 toc;
 

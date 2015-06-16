@@ -45,7 +45,7 @@ for i = 1:N
     for j = 1:M
         k(j) = norm (x - trainingData(j, :));
     end
-    correct = sum(alpha .* trainingLabel .* k) > 0;
+    correct = sum(alpha .* trainingLabel .* k) + bias > 0;
     correctCount = correctCount + correct;
 end
 sprintf ('prediction accuracy is: %d', 100* correctCount / N)

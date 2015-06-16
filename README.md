@@ -13,7 +13,7 @@ svm for [MNIST handwriting digit database](http://yann.lecun.com/exdb/mnist/)
 ├── loadMNISTImages.m           # Load image files
 ├── loadMNISTLabels.m           # Load label files
 ├── svm.m                       # Main program
-└── svmTrain.m                  # name changed...
+└── smoTrain.m                  # Vincent's optimization algorithm
 ```
 
 ### To Vincent

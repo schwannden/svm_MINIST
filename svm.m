@@ -14,13 +14,14 @@ disp('initializing');tic;
 [t0, t1, t2, t3] = arg2vars (10, 0.1, 0, 0);
 kernel = @(X,Y) t0 * exp(t1*norm(X-Y)^2/(-2)) + t2 + t3 * X' * Y;
 [trainingData, trainingLabel] = select (trainingData, trainingLabel, 0, 1);
+[testingData , testingLabel ] = select (testingData , testingLabel , 0, 1);
 N = length (trainingLabel);
-K = zeros (N);
 toc;
 disp('making kernel');tic;
+K = zeros (N);
 for i = 1:N
     for j = i:N
-        K(i, j) = 10 * exp ( 0.1 * norm(trainingData(i) - trainingData(j)));
+        K(i, j) = 0.1 * norm (trainingData(i,:) - trainingData(j,:));
     end
 end
 K = K + triu(K,1)';
@@ -28,6 +29,24 @@ K = K + 0.01 * eye(N);
 save ('K.mat', 'K')
 toc;
 
-% modify the labels before svmTrain.
-[C, tolerance, epsilon] = arg2vars (1, 0.1, 0.1);
-[alpha, bias] = smoTrain (K, trainingLabel, C, tolerance, epsilon);
+disp('smo');tic;
+[C, tolerance, epsilon] = arg2vars (10000, 0.1, 0.1);
+[alpha, bias] = smoTrain (K, trainingLabel', C, tolerance);
+toc;
+
+disp ('predicting');tic;
+N = length (testingLabel);
+M = length (trainingLabel);
+correctCount = 0;
+correct = 0;
+k = zeros (M, 1);
+for i = 1:N
+    x = testingData (i, :);
+    for j = 1:M
+        k(j) = norm (x - trainingData(j, :));
+    end
+    correct = sum(alpha .* trainingLabel .* k) > 0;
+    correctCount = correctCount + correct;
+end
+toc;
+

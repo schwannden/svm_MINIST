@@ -18,7 +18,7 @@ label (I1) = -1;
 I2 = find (label == digit2);
 label (I2) = 1;
 I = union (I1, I2);
-newImage = image (I);
+newImage = image (I, :);
 newLabel = label (I);
 end
 

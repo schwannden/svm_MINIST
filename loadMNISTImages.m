@@ -1,5 +1,7 @@
 function images = loadMNISTImages(filename)
 % loadMNISTImages
+% function:
+%     load MNIST images
 % input
 %     filename: the name of the MNIST database file
 % output:

@@ -1,4 +1,4 @@
-% svm.m
+function [] = svm()% svm.m
 % Testing the performance of SVM on MNIST, with smo
 % author: schwannden
 % e-mail: schwannden@gmail.com
@@ -11,17 +11,19 @@ testingLabel = loadMNISTLabels ('./MNIST/t10k-labels.idx1-ubyte');
 toc;
 
 disp('initializing');tic;
-[t0, t1, t2, t3] = arg2vars (10, 0.1, 0, 0);
-kernel = @(X,Y) t0 * exp(t1*norm(X-Y)^2/(-2)) + t2 + t3 * X' * Y;
 [trainingData, trainingLabel] = select (trainingData, trainingLabel, 0, 1);
 [testingData , testingLabel ] = select (testingData , testingLabel , 0, 1);
+% trainingData = trainingData(1:5000, :);
+% trainingLabel = trainingLabel(1:5000);
+% testingData = testingData(1:5000, :);
+% testingLabel = testingLabel(1:5000);
 N = length (trainingLabel);
 toc;
 disp('making kernel');tic;
 K = zeros (N);
 for i = 1:N
     for j = i:N
-        K(i, j) = 0.1 * norm (trainingData(i,:) - trainingData(j,:));
+        K(i, j) = kernel (trainingData(i,:), trainingData(j,:));
     end
 end
 K = K + triu(K,1)';
@@ -43,11 +45,15 @@ k = zeros (M, 1);
 for i = 1:N
     x = testingData (i, :);
     for j = 1:M
-        k(j) = norm (x - trainingData(j, :));
+        k(j) = kernel (x, trainingData(j, :));
     end
-    correct = sum(alpha .* trainingLabel .* k) + bias > 0;
+    correct = sum(alpha' .* trainingLabel .* k) + bias > 0;
     correctCount = correctCount + correct;
 end
 sprintf ('prediction accuracy is: %d', 100* correctCount / N)
 toc;
+end
 
+function [k] = kernel (X, Y)
+    k = 10 * exp(0.1*norm(X-Y)^2/(-2));
+end

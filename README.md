@@ -16,9 +16,5 @@ svm for [MNIST handwriting digit database](http://yann.lecun.com/exdb/mnist/)
 └── smoTrain.m                  # Vincent's optimization algorithm
 ```
 
-### To Vincent
-As you can see from the file structure, I've included the MNIST database so you don't have download it.
-
-The main program is ``svm.m``, and you need to finish ``svmTrain.m``. I use a different ``loadMNISTImages.m`` and ``loadMNISTLabels.m`` then the one provided on Google drive, so please use mine.
-
-The specification of each function is written clearly in the header of each file :)
+### To Rum
+run ``svm.m``
